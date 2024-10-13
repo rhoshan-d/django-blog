@@ -38,6 +38,14 @@ class Comment(models.Model):
         return f"Comment {self.body} by {self.author}"
 
 
+class About(models.Model):
+    title = models.CharField(max_length=200)
+    updated_on = models.DateTimeField(auto_now=True)
+    content = models.TextField()
+
+    def __str__(self):
+        return self.title
+
 # class Ticket(models.Model):
 #     ticket_holder = models.ForeignKey(
 #         User,
