@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<main class="container mt-5">
+    <h1 class="mb-4 text-center">Create a New Vehicle Project</h1>
+    <form method="post" enctype="multipart/form-data" class="custom-form">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            {{ form.non_field_errors }}
+        </div>
+
+        {% for field in form %}
+            {% if field.name != 'slug' and field.name != 'owner' %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    <div class="text-danger">{{ field.errors }}</div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary btn-lg">Save</button>
+        </div>
+    </form>
+</main>
+
+<style>
+    .custom-form {
+        background-color: #ffffff;
+        border: 1px solid #e1e1e1;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .custom-form h1 {
+        font-family: 'Arial', sans-serif;
+        color: #333;
+    }
+
+    .form-group label {
+        font-weight: bold;
+        color: #555;
+        margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        border-radius: 5px;
+        border: 1px solid #ced4da;
+        padding: 10px;
+        transition: border-color 0.3s, box-shadow 0.3s;
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        outline: none;
+    }
+
+    .text-danger {
+        font-size: 0.9rem;
+        margin-top: 5px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        transition: background-color 0.3s;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+{% endblock %}

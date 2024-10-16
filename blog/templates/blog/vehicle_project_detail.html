@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<h1>{{ project.title }}</h1>
+<img src="{{ project.vehicle_image.url }}" alt="{{ project.title }}">
+<p>{{ project.description }}</p>
+<p><strong>Make:</strong> {{ project.make }}</p>
+<p><strong>Model:</strong> {{ project.model }}</p>
+<p><strong>Year:</strong> {{ project.year }}</p>

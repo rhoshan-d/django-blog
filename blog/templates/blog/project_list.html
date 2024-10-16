@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<main class="container mt-5">
+    <h1 class="mb-4">Discover Unique Builds from Vehicle Enthusiasts</h1>
+
+    {% if user.is_authenticated %}
+        <div class="mb-4">
+            <a href="{% url 'project_create' %}" class="btn btn-primary">Create Post</a>
+        </div>
+    {% else %}
+        <div class="alert alert-info" role="alert">
+            Log in to create a post about your build.
+        </div>
+    {% endif %}
+
+    {% if projects %}
+        <div class="row">
+            {% for project in projects %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <a href="{% url 'project_detail' project.slug %}">
+                            <img src="{{ project.vehicle_image.url }}" class="card-img-top" alt="{{ project.title }}">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{% url 'project_detail' project.slug %}">{{ project.title }}</a>
+                            </h5>
+                            <p class="card-text"><strong>Owner:</strong> {{ project.owner }}</p>
+                            <p class="card-text"><strong>Make:</strong> {{ project.make }}</p>
+                            <p class="card-text"><strong>Model:</strong> {{ project.model }}</p>
+                            <p class="card-text"><strong>Year:</strong> {{ project.year }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No projects available.</p>
+    {% endif %}
+</main>
+
+{% endblock %}
