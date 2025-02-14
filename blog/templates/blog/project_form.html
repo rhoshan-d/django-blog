@@ -11,16 +11,48 @@
             {{ form.non_field_errors }}
         </div>
 
-        {% for field in form %}
-            {% if field.name != 'slug' and field.name != 'owner' %}
-                <div class="form-group">
-                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                    {{ field }}
-                    <div class="text-danger">{{ field.errors }}</div>
-                </div>
-            {% endif %}
-        {% endfor %}
-        
+        <div class="form-group">
+            <label for="{{ form.title.id_for_label }}">Project Title</label>
+            {{ form.title }}
+            <small class="form-text text-muted">Enter the title of the vehicle project.</small>
+            <div class="text-danger">{{ form.title.errors }}</div>
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.description.id_for_label }}">Description</label>
+            {{ form.description }}
+            <small class="form-text text-muted">Provide a brief description of the project.</small>
+            <div class="text-danger">{{ form.description.errors }}</div>
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.make.id_for_label }}">Make</label>
+            {{ form.make }}
+            <small class="form-text text-muted">Enter the make of the vehicle.</small>
+            <div class="text-danger">{{ form.make.errors }}</div>
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.model.id_for_label }}">Model</label>
+            {{ form.model }}
+            <small class="form-text text-muted">Enter the model of the vehicle.</small>
+            <div class="text-danger">{{ form.model.errors }}</div>
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.year.id_for_label }}">Year</label>
+            {{ form.year }}
+            <small class="form-text text-muted">Enter the year of the vehicle.</small>
+            <div class="text-danger">{{ form.year.errors }}</div>
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.vehicle_image.id_for_label }}">Vehicle Image</label>
+            {{ form.vehicle_image }}
+            <small class="form-text text-muted">Upload an image of the vehicle.</small>
+            <div class="text-danger">{{ form.vehicle_image.errors }}</div>
+        </div>
+
         <div class="text-center">
             <button type="submit" class="btn btn-primary btn-lg">Save</button>
         </div>

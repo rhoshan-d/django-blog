@@ -47,7 +47,7 @@ class VehicleProject(models.Model):
     owner = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="vehicle_projects"
     )
-    vehicle_image = CloudinaryField('image', default='placeholder')
+    vehicle_image = CloudinaryField('image', default='https://res.cloudinary.com/your-cloud-name/image/upload/v1234567890/placeholder.jpg')
     make = models.CharField(max_length=100)
     model = models.CharField(max_length=100)
     year = models.IntegerField()  # Year of the vehicle

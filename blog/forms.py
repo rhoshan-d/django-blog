@@ -15,4 +15,4 @@ class CommentForm(forms.ModelForm):
 class VehicleProjectForm(forms.ModelForm):
     class Meta:
         model = VehicleProject
-        fields = ['title', 'slug', 'owner', 'vehicle_image', 'make', 'model', 'year', 'description']
+        fields = ['title', 'make', 'model', 'year', 'description', 'vehicle_image']

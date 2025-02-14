@@ -72,26 +72,21 @@ def vehicle_project_detail(request, slug):
     project = get_object_or_404(VehicleProject, slug=slug)
     return render(request, 'blog/project_detail.html', {'project': project})
 
-class VehicleProjectCreate(CreateView):
-    model = VehicleProject
-    fields = ['title', 'make', 'model', 'year', 'description', 'vehicle_image', 'status']
-    template_name = 'blog/project_form.html'
-    success_url = reverse_lazy('project_list')
-
-    def form_valid(self, form):
-        form.instance.owner = self.request.user
-        
-        title = form.cleaned_data.get('title')
-        form.instance.slug = slugify(title)
-        form.instance.status = 1
-        
-        return super().form_valid(form)
-
-class VehicleProjectUpdate(UpdateView):
-    model = VehicleProject
-    fields = ['title', 'slug', 'owner', 'make', 'model', 'year', 'description', 'vehicle_image', 'status']
-    template_name = 'blog/project_form.html'
-    success_url = reverse_lazy('project_list')
+def create_vehicle_project(request):
+    if request.method == 'POST':
+        form = VehicleProjectForm(request.POST, request.FILES)
+        if form.is_valid():
+            vehicle_project = form.save(commit=False)
+            vehicle_project.owner = request.user
+            vehicle_project.slug = slugify(vehicle_project.title)
+            vehicle_project.status = 1
+            vehicle_project.save()
+            return redirect('project_detail', slug=vehicle_project.slug)
+        else:
+            print(form.errors)  # PRINT FORM ERRORS TO THE CONSOLE FOR DEBUGGING
+    else:
+        form = VehicleProjectForm()
+    return render(request, 'blog/project_form.html', {'form': form})
 
 class VehicleProjectDelete(DeleteView):
     model = VehicleProject
