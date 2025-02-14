@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
@@ -7,7 +7,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.utils.text import slugify
 from .models import Post, Comment, VehicleProject
-from .forms import CommentForm 
+from .forms import CommentForm, VehicleProjectForm 
 
 class PostList(generic.ListView):
     queryset = Post.objects.filter(status=1)
@@ -83,7 +83,7 @@ class VehicleProjectCreate(CreateView):
         
         title = form.cleaned_data.get('title')
         form.instance.slug = slugify(title)
-        form.instance.status = 'published'
+        form.instance.status = 1
         
         return super().form_valid(form)
 
@@ -97,3 +97,17 @@ class VehicleProjectDelete(DeleteView):
     model = VehicleProject
     template_name = 'blog/project_confirm_delete.html'
     success_url = reverse_lazy('project_list')
+
+
+def edit_vehicle_project(request, slug):
+    vehicle_project = get_object_or_404(VehicleProject, slug=slug)
+    if request.method == 'POST':
+        form = VehicleProjectForm(request.POST, request.FILES, instance=vehicle_project)
+        if form.is_valid():
+            vehicle_project = form.save(commit=False)
+            vehicle_project.status = 1  # Ensure the status is set to 1 (published)
+            vehicle_project.save()
+            return redirect('project_detail', slug=vehicle_project.slug)
+    else:
+        form = VehicleProjectForm(instance=vehicle_project)
+    return render(request, 'blog/project_form.html', {'form': form})

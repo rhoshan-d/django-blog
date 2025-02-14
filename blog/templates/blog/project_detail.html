@@ -10,7 +10,7 @@
 
             {% if user.is_authenticated and user == project.owner %}
                 <div>
-                    <a href="{% url 'project_edit' project.slug %}" class="btn btn-warning">Edit Project</a>
+                    <a href="{% url 'edit_vehicle_project' project.slug %}" class="btn btn-warning">Edit Project</a>
                     <form action="{% url 'project_delete' project.slug %}" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this project?');">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-danger">Delete Project</button>
@@ -24,8 +24,8 @@
 
 <main class="container">
     <div class="card mb-4">
-        {% if project.featured_image %}
-            <img src="{{ project.featured_image.url }}" class="card-img-top" alt="{{ project.title }}">
+        {% if project.vehicle_image %}
+            <img src="{{ project.vehicle_image.url }}" class="card-img-top" alt="{{ project.title }}">
         {% endif %}
         <div class="card-body">
             <h5 class="card-title">Project Details</h5>

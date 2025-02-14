@@ -5,7 +5,7 @@ urlpatterns = [
     path('vehicles-projects/', views.VehicleProjectList.as_view(), name='project_list'),
     path('vehicles-projects/create/', views.VehicleProjectCreate.as_view(), name='project_create'),
     path('vehicles-projects/<slug:slug>/', views.vehicle_project_detail, name='project_detail'),
-    path('vehicles-projects/<slug:slug>/edit/', views.VehicleProjectUpdate.as_view(), name='project_edit'),
+    path('vehicles-projects/<slug:slug>/edit/', views.edit_vehicle_project, name='edit_vehicle_project'),
     path('vehicles-projects/<slug:slug>/delete/', views.VehicleProjectDelete.as_view(), name='project_delete'),
     
     path("", views.PostList.as_view(), name='home'),

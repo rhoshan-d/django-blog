@@ -1,5 +1,5 @@
 from django import forms
-from .models import Comment
+from .models import Comment, VehicleProject
 
 class CommentForm(forms.ModelForm):
     """
@@ -11,3 +11,8 @@ class CommentForm(forms.ModelForm):
         """
         model = Comment
         fields = ('body',)
+
+class VehicleProjectForm(forms.ModelForm):
+    class Meta:
+        model = VehicleProject
+        fields = ['title', 'slug', 'owner', 'vehicle_image', 'make', 'model', 'year', 'description']

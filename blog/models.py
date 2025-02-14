@@ -52,7 +52,7 @@ class VehicleProject(models.Model):
     model = models.CharField(max_length=100)
     year = models.IntegerField()  # Year of the vehicle
     description = models.TextField()  # Description of the build or vehicle story
-    status = models.IntegerField(choices=STATUS, default=0)
+    status = models.IntegerField(choices=STATUS, default=1)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
