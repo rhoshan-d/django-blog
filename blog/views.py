@@ -1,4 +1,7 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
@@ -24,6 +27,7 @@ def post_detail(request, slug):
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
+
             comment.author = request.user
             comment.post = post
             comment.save()
@@ -72,6 +76,7 @@ def vehicle_project_detail(request, slug):
     project = get_object_or_404(VehicleProject, slug=slug)
     return render(request, 'blog/project_detail.html', {'project': project})
 
+@login_required
 def create_vehicle_project(request):
     if request.method == 'POST':
         form = VehicleProjectForm(request.POST, request.FILES)
@@ -88,12 +93,12 @@ def create_vehicle_project(request):
         form = VehicleProjectForm()
     return render(request, 'blog/project_form.html', {'form': form})
 
-class VehicleProjectDelete(DeleteView):
+class VehicleProjectDelete(LoginRequiredMixin, DeleteView):
     model = VehicleProject
     template_name = 'blog/project_confirm_delete.html'
     success_url = reverse_lazy('project_list')
 
-
+@login_required
 def edit_vehicle_project(request, slug):
     vehicle_project = get_object_or_404(VehicleProject, slug=slug)
     if request.method == 'POST':
