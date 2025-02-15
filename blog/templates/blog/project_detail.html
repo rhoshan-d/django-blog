@@ -4,18 +4,20 @@
 
 <header class="bg-light p-4 mb-4">
     <div class="container">
-        <h1 class="display-4">{{ project.title }}</h1>
-        <div class="d-flex justify-content-between">
-            <a href="{% url 'project_list' %}" class="btn btn-secondary">Back to Projects</a>
-
+        <h1 class="display-4 text-center">{{ project.title }}</h1>
+        <div class="d-flex justify-content-center flex-wrap">
+            <div class="m-2">
+                <a href="{% url 'project_list' %}" class="btn btn-secondary btn-block">Back to Projects</a>
+            </div>
             {% if user.is_authenticated and user == project.owner %}
-                <div>
-                    <a href="{% url 'edit_vehicle_project' project.slug %}" class="btn btn-warning">Edit Project</a>
+                <div class="m-2">
+                    <a href="{% url 'edit_vehicle_project' project.slug %}" class="btn btn-warning btn-block">Edit Project</a>
+                </div>
+                <div class="m-2">
                     <form action="{% url 'project_delete' project.slug %}" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this project?');">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-danger">Delete Project</button>
+                        <button type="submit" class="btn btn-danger btn-block">Delete Project</button>
                     </form>
-                    
                 </div>
             {% endif %}
         </div>
@@ -28,11 +30,17 @@
             <img src="{{ project.vehicle_image.url }}" class="card-img-top" alt="{{ project.title }}">
         {% endif %}
         <div class="card-body">
-            <h5 class="card-title">Project Details</h5>
-            <p class="card-text"><strong>Owner:</strong> {{ project.owner }}</p>
-            <p class="card-text"><strong>Make:</strong> {{ project.make }}</p>
-            <p class="card-text"><strong>Model:</strong> {{ project.model }}</p>
-            <p class="card-text"><strong>Year:</strong> {{ project.year }}</p>
+            <h5 class="card-title">Vehicle Specs</h5>
+            <div class="row">
+                <div class="col-12 col-md-6 mb-3">
+                    <p class="card-text"><strong>Owner:</strong> {{ project.owner }}</p>
+                    <p class="card-text"><strong>Make:</strong> {{ project.make }}</p>
+                </div>
+                <div class="col-12 col-md-6 mb-3">
+                    <p class="card-text"><strong>Model:</strong> {{ project.model }}</p>
+                    <p class="card-text"><strong>Year:</strong> {{ project.year }}</p>
+                </div>
+            </div>
             <p class="card-text"><strong>Description:</strong> {{ project.description }}</p>
         </div>
     </div>
