@@ -4,12 +4,16 @@ from django.urls import reverse
 from .forms import CommentForm
 from .models import Post, Comment
 
+
 class TestBlogViews(TestCase):
 
     def setUp(self):
         """Create a superuser and a blog post"""
         self.user = User.objects.create_superuser(
-            username="myUsername", password="myPassword", email="test@test.com")
+            username="myUsername",
+            password="myPassword",
+            email="test@test.com"
+        )
         self.post = Post(title="Blog title", author=self.user,
                          slug="blog-title", excerpt="Blog excerpt",
                          content="Blog content", status=1)
@@ -40,12 +44,16 @@ class TestBlogViews(TestCase):
         """Test for editing a comment on a post"""
         self.client.login(username="myUsername", password="myPassword")
         comment = Comment.objects.create(
-            post=self.post, author=self.user, body="Original comment", approved=True)
+            post=self.post,
+            author=self.user,
+            body="Original comment",
+            approved=True
+        )
         post_data = {
             'body': 'Updated comment.'
         }
-        response = self.client.post(
-            reverse('comment_edit', args=['blog-title', comment.id]), post_data)
+        url = reverse('comment_edit', args=['blog-title', comment.id])
+        response = self.client.post(url, post_data)
         self.assertEqual(response.status_code, 302)
         comment.refresh_from_db()
         self.assertEqual(comment.body, 'Updated comment.')
@@ -55,7 +63,11 @@ class TestBlogViews(TestCase):
         """Test for deleting a comment on a post"""
         self.client.login(username="myUsername", password="myPassword")
         comment = Comment.objects.create(
-            post=self.post, author=self.user, body="Comment to be deleted", approved=True)
+            post=self.post,
+            author=self.user,
+            body="Comment to be deleted",
+            approved=True
+        )
         response = self.client.post(
             reverse('comment_delete', args=['blog-title', comment.id]))
         self.assertEqual(response.status_code, 302)

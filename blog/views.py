@@ -10,12 +10,14 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.utils.text import slugify
 from .models import Post, Comment, VehicleProject
-from .forms import CommentForm, VehicleProjectForm 
+from .forms import CommentForm, VehicleProjectForm
+
 
 class PostList(generic.ListView):
     queryset = Post.objects.filter(status=1)
     template_name = "blog/index.html"
     paginate_by = 6
+
 
 def post_detail(request, slug):
     queryset = Post.objects.filter(status=1)
@@ -31,13 +33,18 @@ def post_detail(request, slug):
             comment.author = request.user
             comment.post = post
             comment.save()
-            messages.add_message(request, messages.SUCCESS, 'Comment submitted and awaiting approval')
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                'Comment submitted and awaiting approval'
+            )
     return render(request, "blog/post_detail.html", {
         "post": post,
         "comments": comments,
         "comment_count": comment_count,
         "comment_form": comment_form,
     })
+
 
 def comment_edit(request, slug, comment_id):
     if request.method == "POST":
@@ -52,8 +59,13 @@ def comment_edit(request, slug, comment_id):
             comment.save()
             messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
         else:
-            messages.add_message(request, messages.ERROR, 'Error updating comment!')
+            messages.add_message(
+                request,
+                messages.ERROR,
+                'Error updating comment!'
+            )
     return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+
 
 def comment_delete(request, slug, comment_id):
     queryset = Post.objects.filter(status=1)
@@ -63,18 +75,28 @@ def comment_delete(request, slug, comment_id):
         comment.delete()
         messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
     else:
-        messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
+        messages.add_message(
+            request,
+            messages.ERROR,
+            'You can only delete your own comments!'
+        )
     return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+
 
 class VehicleProjectList(View):
     def get(self, request):
-        projects = VehicleProject.objects.filter(status=1).order_by('-created_on')
-        return render(request, 'blog/project_list.html', {'projects': projects})
+        projects = VehicleProject.objects.filter(status=1).order_by(
+            '-created_on'
+        )
+        return render(
+            request, 'blog/project_list.html', {'projects': projects}
+        )
 
 
 def vehicle_project_detail(request, slug):
     project = get_object_or_404(VehicleProject, slug=slug)
     return render(request, 'blog/project_detail.html', {'project': project})
+
 
 @login_required
 def create_vehicle_project(request):
@@ -88,24 +110,30 @@ def create_vehicle_project(request):
             vehicle_project.save()
             return redirect('project_detail', slug=vehicle_project.slug)
         else:
-            print(form.errors)  # PRINT FORM ERRORS TO THE CONSOLE FOR DEBUGGING
+            print(form.errors)
     else:
         form = VehicleProjectForm()
     return render(request, 'blog/project_form.html', {'form': form})
+
 
 class VehicleProjectDelete(LoginRequiredMixin, DeleteView):
     model = VehicleProject
     template_name = 'blog/project_confirm_delete.html'
     success_url = reverse_lazy('project_list')
 
+
 @login_required
 def edit_vehicle_project(request, slug):
     vehicle_project = get_object_or_404(VehicleProject, slug=slug)
     if request.method == 'POST':
-        form = VehicleProjectForm(request.POST, request.FILES, instance=vehicle_project)
+        form = VehicleProjectForm(
+            request.POST,
+            request.FILES,
+            instance=vehicle_project
+        )
         if form.is_valid():
             vehicle_project = form.save(commit=False)
-            vehicle_project.status = 1  # Ensure the status is set to 1 (published)
+            vehicle_project.status = 1
             vehicle_project.save()
             return redirect('project_detail', slug=vehicle_project.slug)
     else:

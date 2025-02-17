@@ -1,6 +1,7 @@
 from django import forms
 from .models import Comment, VehicleProject
 
+
 class CommentForm(forms.ModelForm):
     """
     Form class for users to comment on a post
@@ -12,8 +13,12 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ('body',)
 
+
 class VehicleProjectForm(forms.ModelForm):
     class Meta:
         model = VehicleProject
-        fields = ['title', 'make', 'model', 'year', 'description', 'vehicle_image']
+        fields = [
+            'title',
+            'make',
+            'model', 'year', 'description', 'vehicle_image']
     vehicle_image = forms.ImageField(required=True)

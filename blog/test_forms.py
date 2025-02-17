@@ -3,6 +3,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 from .forms import CommentForm, VehicleProjectForm
 
+
 class TestCommentForm(TestCase):
 
     def test_form_is_valid(self):
@@ -12,6 +13,7 @@ class TestCommentForm(TestCase):
     def test_form_is_invalid(self):
         comment_form = CommentForm({'body': ''})
         self.assertFalse(comment_form.is_valid(), msg="Form is valid")
+
 
 class TestVehicleProjectForm(TestCase):
 
@@ -27,7 +29,9 @@ class TestVehicleProjectForm(TestCase):
                 'description': 'Project Description',
             }
             file_data = {
-                'vehicle_image': SimpleUploadedFile(name='default.jpg', content=image.read(), content_type='image/jpeg')
+                'vehicle_image': SimpleUploadedFile(
+                    name='default.jpg',
+                    content=image.read(), content_type='image/jpeg')
             }
             form = VehicleProjectForm(data=form_data, files=file_data)
             self.assertTrue(form.is_valid(), msg="Form is invalid")
