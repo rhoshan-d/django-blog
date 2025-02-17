@@ -28,8 +28,16 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE,related_name="comments")
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="commenter")
+    post = models.ForeignKey(
+        Post,
+        on_delete=models.CASCADE,
+        related_name="comments"
+    )
+    author = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="commenter"
+    )
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
@@ -47,11 +55,18 @@ class VehicleProject(models.Model):
     owner = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="vehicle_projects"
     )
-    vehicle_image = CloudinaryField('image', default='https://res.cloudinary.com/da2p6g2oi/image/upload/v1739504776/depositphotos_247872612-stock-illustration-no-image-available-icon-vector_fzapaw.webp')
+    vehicle_image = CloudinaryField(
+        'image',
+        default=(
+            'https://res.cloudinary.com/da2p6g2oi/image/upload/'
+            'v1739504776/depositphotos_247872612-stock-illustration-'
+            'no-image-available-icon-vector_fzapaw.webp'
+        )
+    )
     make = models.CharField(max_length=100)
     model = models.CharField(max_length=100)
-    year = models.IntegerField()  # Year of the vehicle
-    description = models.TextField()  # Description of the build or vehicle story
+    year = models.IntegerField()
+    description = models.TextField()
     status = models.IntegerField(choices=STATUS, default=1)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
@@ -61,4 +76,3 @@ class VehicleProject(models.Model):
 
     def __str__(self):
         return f"{self.title} | owned by {self.owner}"
-
