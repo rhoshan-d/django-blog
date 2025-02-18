@@ -4,13 +4,17 @@
 
 <main class="container mt-5">
     <h1 class="mb-4 text-center">Create Vehicle Project</h1>
+    
+    <!-- Form for creating a new vehicle project -->
     <form method="post" enctype="multipart/form-data" class="custom-form">
         {% csrf_token %}
         
+        <!-- Display non-field errors -->
         <div class="form-group">
             {{ form.non_field_errors }}
         </div>
 
+        <!-- Project Title field -->
         <div class="form-group">
             <label for="{{ form.title.id_for_label }}">Project Title</label>
             {{ form.title }}
@@ -18,6 +22,7 @@
             <div class="text-danger">{{ form.title.errors }}</div>
         </div>
 
+        <!-- Description field -->
         <div class="form-group">
             <label for="{{ form.description.id_for_label }}">Description</label>
             {{ form.description }}
@@ -25,6 +30,7 @@
             <div class="text-danger">{{ form.description.errors }}</div>
         </div>
 
+        <!-- Make field -->
         <div class="form-group">
             <label for="{{ form.make.id_for_label }}">Make</label>
             {{ form.make }}
@@ -32,6 +38,7 @@
             <div class="text-danger">{{ form.make.errors }}</div>
         </div>
 
+        <!-- Model field -->
         <div class="form-group">
             <label for="{{ form.model.id_for_label }}">Model</label>
             {{ form.model }}
@@ -39,6 +46,7 @@
             <div class="text-danger">{{ form.model.errors }}</div>
         </div>
 
+        <!-- Year field -->
         <div class="form-group">
             <label for="{{ form.year.id_for_label }}">Year</label>
             {{ form.year }}
@@ -46,6 +54,7 @@
             <div class="text-danger">{{ form.year.errors }}</div>
         </div>
 
+        <!-- Vehicle Image field -->
         <div class="form-group">
             <label for="{{ form.vehicle_image.id_for_label }}">Vehicle Image <span class="text-danger">*</span></label>
             {{ form.vehicle_image }}
@@ -53,8 +62,9 @@
             <div class="text-danger">{{ form.vehicle_image.errors }}</div>
         </div>
 
+        <!-- Submit button -->
         <div class="text-center">
-            <button type="submit" class="btn btn-primary btn-lg">Save</button>
+            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
         </div>
     </form>
 </main>
