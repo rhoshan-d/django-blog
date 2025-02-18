@@ -76,3 +76,15 @@ class VehicleProject(models.Model):
 
     def __str__(self):
         return f"{self.title} | owned by {self.owner}"
+
+    def is_liked_by(self, user):
+        return self.likes.filter(user=user).exists()
+
+
+class ProjectLike(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    project = models.ForeignKey(VehicleProject, on_delete=models.CASCADE, related_name='likes')
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ['user', 'project']
