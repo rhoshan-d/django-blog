@@ -42,8 +42,26 @@
                 </div>
             </div>
             <p class="card-text"><strong>Description:</strong> {{ project.description }}</p>
+            <div class="like-section mt-3">
+                {% if user.is_authenticated %}
+                    <button class="btn like-btn {% if liked %}liked{% endif %}" 
+                            data-project="{{ project.slug }}">
+                        <i class="fas fa-heart"></i>
+                        <span class="likes-count">{{ project.likes.count }}</span>
+                    </button>
+                {% else %}
+                    <div class="likes-display">
+                        <i class="fas fa-heart"></i>
+                        <span class="likes-count">{{ project.likes.count }}</span>
+                    </div>
+                {% endif %}
+            </div>
         </div>
     </div>
 </main>
+
+{% block extrajs %}
+<script src="{% static 'js/vehicle_project_like.js' %}"></script>
+{% endblock %}
 
 {% endblock %}
