@@ -4,12 +4,12 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views import generic
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.views import View
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.utils.text import slugify
-from .models import Post, Comment, VehicleProject
+from .models import Post, Comment, VehicleProject, ProjectLike
 from .forms import CommentForm, VehicleProjectForm
 
 
@@ -95,7 +95,13 @@ class VehicleProjectList(View):
 
 def vehicle_project_detail(request, slug):
     project = get_object_or_404(VehicleProject, slug=slug)
-    return render(request, 'blog/project_detail.html', {'project': project})
+    liked = False
+    if request.user.is_authenticated:
+        liked = project.is_liked_by(request.user)
+    return render(request, 'blog/project_detail.html', {
+        'project': project,
+        'liked': liked
+    })
 
 
 @login_required
@@ -139,3 +145,23 @@ def edit_vehicle_project(request, slug):
     else:
         form = VehicleProjectForm(instance=vehicle_project)
     return render(request, 'blog/project_form.html', {'form': form})
+
+
+@login_required
+def like_project(request, slug):
+    project = get_object_or_404(VehicleProject, slug=slug)
+    like, created = ProjectLike.objects.get_or_create(
+        user=request.user,
+        project=project
+    )
+    
+    if not created:
+        like.delete()
+        liked = False
+    else:
+        liked = True
+        
+    return JsonResponse({
+        'liked': liked,
+        'likes_count': project.likes.count()
+    })
