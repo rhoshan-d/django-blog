@@ -14,9 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.querySelector('.likes-count').textContent = data.likes_count
             })
             .catch(error => console.error('Error:', error))
-        });
-    });
-});
+        })
+    })
+})
 
 function getCookie(name) {
     let value = `; ${document.cookie}`
