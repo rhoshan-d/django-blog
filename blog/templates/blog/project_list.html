@@ -28,7 +28,7 @@
                         </a>
                         <div class="card-body">
                             <h5 class="card-title">
-                                <a href="{% url 'project_detail' project.slug %}">{{ project.title }}</a>
+                                <a href="{% url 'project_detail' project.slug %}" class="project-title">{{ project.title }}</a>
                             </h5>
                             <p class="card-text"><strong>Owner:</strong> {{ project.owner }}</p>
                             <p class="card-text"><strong>Make:</strong> {{ project.make }}</p>
