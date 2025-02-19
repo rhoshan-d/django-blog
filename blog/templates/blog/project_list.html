@@ -34,6 +34,10 @@
                             <p class="card-text"><strong>Make:</strong> {{ project.make }}</p>
                             <p class="card-text"><strong>Model:</strong> {{ project.model }}</p>
                             <p class="card-text"><strong>Year:</strong> {{ project.year }}</p>
+                            <p class="card-text">
+                                <i class="fas fa-heart heart-project"></i>
+                                <span>{{ project.likes.count }}</span>
+                            </p>
                         </div>
                     </div>
                 </div>

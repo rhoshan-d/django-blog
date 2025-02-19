@@ -438,3 +438,7 @@ body {
 .likes-display i {
     margin-right: 0.25rem;
 }
+
+.heart-project {
+    color: #E74C3C;
+}
