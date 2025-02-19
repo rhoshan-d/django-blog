@@ -11,6 +11,7 @@ from django.urls import reverse_lazy
 from django.utils.text import slugify
 from .models import Post, Comment, VehicleProject, ProjectLike
 from .forms import CommentForm, VehicleProjectForm
+import time
 
 
 class PostList(generic.ListView):
@@ -111,12 +112,14 @@ def create_vehicle_project(request):
         if form.is_valid():
             vehicle_project = form.save(commit=False)
             vehicle_project.owner = request.user
-            vehicle_project.slug = slugify(vehicle_project.title)
+            
+            base_slug = slugify(vehicle_project.title)
+            unique_suffix = f"{request.user.username}-{int(time.time())}"
+            vehicle_project.slug = f"{base_slug}-{unique_suffix}"
+            
             vehicle_project.status = 1
             vehicle_project.save()
             return redirect('project_detail', slug=vehicle_project.slug)
-        else:
-            print(form.errors)
     else:
         form = VehicleProjectForm()
     return render(request, 'blog/project_form.html', {'form': form})

@@ -50,7 +50,7 @@ class Comment(models.Model):
 
 
 class VehicleProject(models.Model):
-    title = models.CharField(max_length=200, unique=True)
+    title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
     owner = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="vehicle_projects"
