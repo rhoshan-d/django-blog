@@ -19,7 +19,7 @@ Welcome to MotorDrive, your dedicated hub for car enthusiasts! Whether you're sh
 
   
 
-![motordrive Mockup](documentation/project_images/motordrive_mockup.webp) /////// REPLACE WITH AM I RESPONSIVE IMAGE OF THE WEBSITE
+![motordrive Mockup](documentation/project_images/motordrive_mockup.png)
 
   
 
@@ -197,7 +197,7 @@ Created using Wireframe.cc
 
 ### Database Schema
 
-<img  src="documentation/project_images/motordrive_ER_diagram.png"  width="75%"  alt="Database Schema"/>
+<img  src="documentation/project_images/motordrive_erd.png"  width="75%"  alt="Database Schema"/>
 
   
 
@@ -348,6 +348,10 @@ GitHub was used for version control and project management.
 - [startbootstrap.com](https://startbootstrap.com/) for some initial templates.
 
 - [Unsplash](https://unsplash.com/) for free images used for car builds.
+
+- [dbdiagram.io](https://dbdiagram.io) - Used to generate the database entity relationship diagram (ERD).
+
+- [Am I Responsive](https://ui.dev/amiresponsive) - Used to create responsive design mockups across different device viewports.
 
   
 
