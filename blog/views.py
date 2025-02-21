@@ -119,6 +119,7 @@ def create_vehicle_project(request):
             
             vehicle_project.status = 1
             vehicle_project.save()
+            messages.success(request, 'Your project has been created successfully!')
             return redirect('project_detail', slug=vehicle_project.slug)
     else:
         form = VehicleProjectForm()
