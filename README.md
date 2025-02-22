@@ -62,6 +62,15 @@ Introducing MotorDrive, the ultimate platform for car lovers and gearheads to sh
 
 The user experience of MotorDrive is designed to be straightforward and engaging, offering users an easy way to showcase and manage their vehicle builds, interact with other users, and explore the latest posts from the car community.
 
+
+
+### Flowchart
+
+The flowchart below illustrates the user flow and interactions within the MotorDrive application. It provides a visual representation of the steps a user takes to navigate through the application, from the home page to managing vehicle projects.
+
+<p align="center">
+  <img src="documentation/project_images/motordrive_flowchart.png" alt="MotorDrive Flowchart" width="75%">
+</p>
   
 
 ### Account Creation and Login:
