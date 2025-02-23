@@ -112,14 +112,15 @@ def create_vehicle_project(request):
         if form.is_valid():
             vehicle_project = form.save(commit=False)
             vehicle_project.owner = request.user
-            
+
             base_slug = slugify(vehicle_project.title)
             unique_suffix = f"{request.user.username}-{int(time.time())}"
             vehicle_project.slug = f"{base_slug}-{unique_suffix}"
-            
+
             vehicle_project.status = 1
             vehicle_project.save()
-            messages.success(request, 'Your project has been created successfully!')
+            messages.success(request,
+                             'Your project has been created successfully!')
             return redirect('project_detail', slug=vehicle_project.slug)
     else:
         form = VehicleProjectForm()
@@ -158,13 +159,13 @@ def like_project(request, slug):
         user=request.user,
         project=project
     )
-    
+
     if not created:
         like.delete()
         liked = False
     else:
         liked = True
-        
+
     return JsonResponse({
         'liked': liked,
         'likes_count': project.likes.count()

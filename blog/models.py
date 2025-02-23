@@ -83,7 +83,11 @@ class VehicleProject(models.Model):
 
 class ProjectLike(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    project = models.ForeignKey(VehicleProject, on_delete=models.CASCADE, related_name='likes')
+    project = models.ForeignKey(
+        VehicleProject,
+        on_delete=models.CASCADE,
+        related_name='likes'
+    )
     created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:
