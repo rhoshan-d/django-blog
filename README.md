@@ -63,6 +63,107 @@ Introducing MotorDrive, the ultimate platform for car lovers and gearheads to sh
 The user experience of MotorDrive is designed to be straightforward and engaging, offering users an easy way to showcase and manage their vehicle builds, interact with other users, and explore the latest posts from the car community.
 
 
+### **Scope and Structure**
+
+#### **Scope**    
+
+This project focuses on two main user roles:  
+
+- **Visitors** - Can browse vehicle projects, read build details and engage with content
+- **Users** - Can create accounts to like projects and interact with the community
+
+The platform is designed to provide an **engaging automotive community** and **project showcase platform** while ensuring an **intuitive user experience**.
+
+#### **Structure**  
+
+The project is structured around three key areas:  
+
+- **Project Gallery** - A clean display of vehicle builds with detailed project pages
+- **User Interaction** - Account management, likes system and community features  
+- **Clean & Responsive Design** - A structured layout ensuring clarity and ease of use across devices
+
+### **User Stories**
+
+The project focuses on delivering key functionality for visitors and registered users:
+
+#### **User Authentication** 
+- As a visitor, I can register for an account to create and like vehicle projects
+- As a user, I can log in to access my account and manage my content
+- As a user, I can log out to securely end my session
+- As an admin, I can manage user content and accounts
+
+#### **Project Features**
+- As a user, I can create new vehicle project posts with details and images
+- As a user, I can edit my existing project posts
+- As a user, I can delete my projects when needed
+- As a visitor, I can browse and view all vehicle projects
+- As a user, I can like other users' projects
+
+#### **Site Features**
+- As a visitor, I can use the contact form on the About page
+- As a visitor, I can view the site responsively on different devices
+- As a user, I can receive feedback when my actions are successful
+
+### **Visual Design**
+
+#### **UI Design Approach**  
+
+The platform follows a **modern, minimalist design** focused on showcasing vehicle projects:
+
+- **Mobile-First Responsive Design** 
+- **High Contrast Color Scheme**
+- **Clean Typography**
+
+#### **Typography & Colors**
+
+The design maintains a clean and modern aesthetic focused on vehicle projects:
+
+**Colors:**
+
+| Color | Hex | Purpose |
+|-------|-----|---------|
+| Primary Teal | #188181 | Primary buttons, CTAs |
+| Teal Hover | #23BBBB | Button hover states |
+| Dark Gray | #4A4A4F | Body text, Brand color |
+| Light Gray | #6c757d | Secondary text, Like counter |
+| Orange Red | #E84610 | Delete buttons, Card badges |
+| Heart Red | #E74C3C | Like/heart icons |
+| Background | #F9FAFC | Main background |
+| White | #FFFFFF | Card backgrounds |
+
+**Typography:**
+
+- **Primary Font**: 'Lato', sans-serif
+- **Font Weights**: 
+  - Regular text: 400
+  - Brand text: 700
+  - Headers: Bold
+- **Sizes**:
+  - Base: 1rem
+  - Brand: 2rem
+  - Project titles: 1.8rem
+  - Like counter: 1.2rem
+
+### **Project Planning**
+
+Development followed an **Agile methodology** with:
+
+- **GitHub Projects** for task management
+- **User Story prioritization** using MoSCoW method
+
+**MoSCoW Prioritization:**
+
+| Priority | Features |
+|----------|----------|
+| Must Have (60%) | User Registration |
+| | Project Creation |
+| | Like System |
+| | Responsive Design |
+| | Project Editing |
+| Should Have (30%) | User Profiles |
+| | Contact Form |
+| Could Have (10%) | Additional Social Features |
+
 
 ### Flowchart
 
@@ -304,9 +405,7 @@ The development was split into several epics: User Authentication, Build Post Ma
 
 ## Testing
 
-For full testing results see [TESTING.md](/TESTING.md)
-
-  
+For full testing results see [TESTING.md](TESTING.md)
 
 ## Deployment
 
