@@ -1,0 +1,22 @@
+{
+  "name": "django-blog",
+  "version": "1.0.0",
+  "description": "<img  style=\"display: block; margin: auto; height: 100px;\"  src=\"documentation/project_images/motordrive_homepage.png\"  alt=\"motordrive logo\"/>",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "testMatch": [
+      "**/documentation/js_tests/**/*.test.js"
+    ]
+  }
+}

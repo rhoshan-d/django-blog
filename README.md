@@ -423,69 +423,75 @@ Heroku was utilized to deploy the site. Follow these steps to deploy your applic
     ```
 2. In the root directory of your project, create a file named `Procfile` (with a capital "P"). Inside this file, add the following line:
     ```plaintext
-    web: python run.py
+    web: gunicorn motordrive.wsgi
     ```
-3. Ensure you are using a database or object storage instead of writing to the local filesystem.
+3. Ensure DEBUG is set to False in settings.py
+4. Add ALLOWED_HOSTS in settings.py:
+    ```python
+    ALLOWED_HOSTS = ['motordrive-bb11300a48d1.herokuapp.com', 'localhost']
+    ```
 
 #### Setting Up Heroku
 
-1. Log in to your Heroku account and create a new application.
-2. Provide a unique name for your app and complete the necessary setup for your language.
-3. Click 'Create App'.
-4. Go to the 'Settings' tab and click Reveal Config Vars. Add the required key-value pairs for your configuration settings, making sure not to include `DEBUG`, `DEVELOPMENT`, or `DB_URL`. And make sure to not use quotes around any of the values.
-5. Navigate to the 'Deploy' tab and in the 'Deployment method' section, choose 'GitHub'.
-6. Search for your repository and click 'Connect'.
-7. Optionally, enable 'Automatic Deploys' to automatically deploy changes pushed to GitHub.
-8. In the 'Manual Deploy' section, click 'Deploy Branch' to initiate the build process.
+1. Log in to Heroku and create a new application
+2. Navigate to Settings > Config Vars and add:
+    ```
+    CLOUDINARY_URL = your_cloudinary_url
+    DATABASE_URL = your_database_url
+    PORT = 8000
+    SECRET_KEY = your_secret_key
+    ```
+3. In the Deploy tab:
+   - Select GitHub as the deployment method
+   - Connect to your repository
+   - Enable automatic deploys (optional)
+   - Click Deploy Branch
 
-#### Finalizing Deployment
+#### Local Development
 
-1. If you make any changes to your models, you will need to manually run migrations on Heroku.
-2. Once the deployment is complete, click the 'Open app' button to view your live application.
-3. Note: The deployed application will load, but the new database will be empty, so you will need to add some initial data.
-
-### How to Run This Project Locally
-
-To run this project locally, follow these steps:
-
-1. **Clone the repository:**
+1. Clone the repository:
     ```sh
-    git clone https://github.com/your-username/your-repo-name.git
-    cd your-repo-name
+    git clone https://github.com/rhoshan-d/django-blog.git
+    cd django-blog
     ```
 
-2. **Install the dependencies:**
+2. Install dependencies:
     ```sh
     pip install -r requirements.txt
     ```
 
-3. **Set up the environment variables:**
-    Create a `.env` file in the root directory and add the necessary environment variables. For example:
-    ```env
-    SECRET_KEY=your_secret_key
-    DEBUG=True
-    DATABASE_URL=your_database_url
+3. Set up environment variables in env.py:
+    ```python
+    import os
+    os.environ['SECRET_KEY'] = 'your_secret_key'
+    os.environ['DEBUG'] = 'True'
+    os.environ['DATABASE_URL'] = 'your_database_url'
+    os.environ['CLOUDINARY_URL'] = 'your_cloudinary_url'
     ```
 
-4. **Apply the migrations:**
+4. Run migrations:
     ```sh
     python manage.py migrate
     ```
 
-5. **Create a superuser:**
+5. Create a superuser:
     ```sh
     python manage.py createsuperuser
     ```
 
-6. **Run the development server:**
+6. Run the server:
     ```sh
     python manage.py runserver
     ```
 
-7. **Access the project:**
-    Open your web browser and go to `http://127.0.0.1:8000/`.
+### Cloudinary Setup
 
-Now you should be able to run the project locally and access it in your web browser.
+1. Create an account at [cloudinary.com](https://cloudinary.com/)
+2. Copy the API Environment variable from the dashboard
+3. Add to Heroku Config Vars and env.py:
+    ```
+    CLOUDINARY_URL = cloudinary://your-api-key
+    ```
 
 ### GitHub
 

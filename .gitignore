@@ -1,3 +1,4 @@
 env.py
 blog/fixtures/
 __pycache__
+node_modules
