@@ -501,7 +501,7 @@ GitHub was used for version control and project management.
 
 ## Credits
 
-- [Code Institute](https://codeinstitute.net/)Project structure and some core functionality inspired by Code Institute's "I Think Therefore I Blog" walkthrough project, with customizations and additional features added to create a vehicle-focused platform.
+- [Code Institute](https://codeinstitute.net/) Project structure and some core functionality inspired by Code Institute's "I Think Therefore I Blog" walkthrough project, with customizations and additional features added to create a vehicle-focused platform.
 
 - [startbootstrap.com](https://startbootstrap.com/) for some initial templates.
 
