@@ -12,6 +12,7 @@ from django.utils.text import slugify
 from .models import Post, Comment, VehicleProject, ProjectLike
 from .forms import CommentForm, VehicleProjectForm
 import time
+from django.core.exceptions import PermissionDenied
 
 
 class PostList(generic.ListView):
@@ -136,6 +137,8 @@ class VehicleProjectDelete(LoginRequiredMixin, DeleteView):
 @login_required
 def edit_vehicle_project(request, slug):
     vehicle_project = get_object_or_404(VehicleProject, slug=slug)
+    if vehicle_project.owner != request.user:
+        raise PermissionDenied()
     if request.method == 'POST':
         form = VehicleProjectForm(
             request.POST,

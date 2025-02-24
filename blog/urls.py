@@ -1,5 +1,6 @@
 from . import views
 from django.urls import path
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
     path(
@@ -9,7 +10,7 @@ urlpatterns = [
     ),
     path(
         'vehicles-projects/create/',
-        views.create_vehicle_project,
+        login_required(views.create_vehicle_project),
         name='project_create'
     ),
     path(
@@ -19,17 +20,17 @@ urlpatterns = [
     ),
     path(
         'vehicles-projects/<slug:slug>/edit/',
-        views.edit_vehicle_project,
+        login_required(views.edit_vehicle_project),
         name='edit_vehicle_project'
     ),
     path(
         'vehicles-projects/<slug:slug>/delete/',
-        views.VehicleProjectDelete.as_view(),
+        login_required(views.VehicleProjectDelete.as_view()),
         name='project_delete'
     ),
     path(
         'vehicles-projects/<slug:slug>/like/',
-        views.like_project,
+        login_required(views.like_project),
         name='like_project'
     ),
     path(

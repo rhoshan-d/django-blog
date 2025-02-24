@@ -404,8 +404,7 @@ The development was split into several epics: User Authentication, Build Post Ma
   
 
 ## Testing
-
-For full testing results see [TESTING.md](TESTING.md)
+Comprehensive testing documentation including manual testing, automated tests, code validation, and responsive design testing can be found in [TESTING.md](TESTING.md).
 
 ## Deployment
 
