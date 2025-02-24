@@ -24,7 +24,7 @@ for (let button of editButtons) {
     let commentContent = document.getElementById(`comment${commentId}`).innerText;
     commentText.value = commentContent;
     submitButton.innerText = "Update";
-    commentForm.setAttribute("action", `edit_comment/${commentId}`);
+    commentForm.setAttribute("action", `edit_comment/${commentId}/`);
   });
 }
 
@@ -39,10 +39,9 @@ for (let button of editButtons) {
 * the user for confirmation before deletion.
 */
 for (let button of deleteButtons) {
-  button.addEventListener("click", (e) => {
+    button.addEventListener("click", (e) => {
       let commentId = e.target.getAttribute("comment_id");
-      let postSlug = e.target.getAttribute("post_slug");
-      deleteConfirm.href = `${postSlug}/delete_comment/${commentId}`;
+      deleteConfirm.href = `delete_comment/${commentId}`;
       deleteModal.show();
-  });
-}
+    });
+  }

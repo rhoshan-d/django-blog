@@ -48,6 +48,7 @@ def post_detail(request, slug):
     })
 
 
+@login_required
 def comment_edit(request, slug, comment_id):
     if request.method == "POST":
         queryset = Post.objects.filter(status=1)
@@ -69,6 +70,7 @@ def comment_edit(request, slug, comment_id):
     return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
 
+@login_required
 def comment_delete(request, slug, comment_id):
     post = get_object_or_404(Post, slug=slug)
     comment = get_object_or_404(Comment, pk=comment_id)

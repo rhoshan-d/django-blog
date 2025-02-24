@@ -496,6 +496,10 @@ Heroku was utilized to deploy the site. Follow these steps to deploy your applic
 
 GitHub was used for version control and project management.
 
+### Note on GitHub Contributions
+
+During the resubmission of Project 4, a few commits were inadvertently made using a secondary GitHub account. While the repository shows two contributors, all development work was completed solely by me. Only three commits were made from the secondary account during the resubmission process.
+
   
 
 ## Credits
