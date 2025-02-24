@@ -1,7 +1,9 @@
+/* jshint esversion: 6 */
+
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.like-btn').forEach(button => {
         button.addEventListener('click', function() {
-            const projectSlug = this.dataset.project
+            const projectSlug = this.dataset.project;
             fetch(`/vehicles-projects/${projectSlug}/like/`, {
                 method: 'POST',
                 headers: {
@@ -11,15 +13,15 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(data => {
                 this.classList.toggle('liked', data.liked);
-                this.querySelector('.likes-count').textContent = data.likes_count
+                this.querySelector('.likes-count').textContent = data.likes_count;
             })
-            .catch(error => console.error('Error:', error))
-        })
-    })
-})
+            .catch(error => console.error('Error:', error));
+        });
+    });
+});
 
 function getCookie(name) {
-    let value = `; ${document.cookie}`
-    let parts = value.split(`; ${name}=`)
-    if (parts.length === 2) return parts.pop().split(';').shift()
+    let value = `; ${document.cookie}`;
+    let parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
 }
