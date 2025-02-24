@@ -34,6 +34,11 @@ urlpatterns = [
         name='like_project'
     ),
     path(
+        '<slug:slug>/delete_comment/<int:comment_id>/',
+        views.comment_delete,
+        name='comment_delete'
+    ),
+    path(
         "",
         views.PostList.as_view(),
         name='home'
