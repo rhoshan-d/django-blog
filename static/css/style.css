@@ -417,10 +417,14 @@ body {
     background-color: #0056b3;
 }
 
+/* Like button styling */
 .like-btn {
     border: none;
-    background: none;
+    background: none; 
     font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    padding: 0.5rem;
 }
 
 .like-btn:not(.liked) {
@@ -438,6 +442,11 @@ body {
     border: none;
 }
 
+.like-btn:focus {
+    outline: none;
+}
+
+/* Alert/notification styling */
 .alert {
     position: absolute;
     top: 100px;
@@ -445,6 +454,7 @@ body {
     width: auto;
     max-width: 300px;
     transition: opacity 0.5s ease-out;
+    z-index: 1000;
 }
 
 .alert.hide {

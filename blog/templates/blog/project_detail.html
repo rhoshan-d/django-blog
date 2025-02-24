@@ -44,7 +44,7 @@
             <p class="card-text"><strong>Description:</strong> {{ project.description }}</p>
             <div class="like-section mt-3">
                 {% if user.is_authenticated %}
-                    <button class="btn like-btn {% if liked %}liked{% endif %}" 
+                    <button class="like-btn {% if liked %}liked{% endif %}" 
                             data-project="{{ project.slug }}">
                         <i class="fas fa-heart"></i>
                         <span class="likes-count">{{ project.likes.count }}</span>
