@@ -514,7 +514,14 @@ During the resubmission of Project 4, a few commits were inadvertently made usin
 
 - [Am I Responsive](https://ui.dev/amiresponsive) - Used to create responsive design mockups across different device viewports.
 
-  
+- [Django](https://www.djangoproject.com/) - The web framework used
+
+- [Cloudinary](https://cloudinary.com/) - Used for image hosting and management
+
+- [Heroku](https://www.heroku.com/) - Used for application deployment
+
+- [Bootstrap](https://getbootstrap.com/) - Used for responsive design and styling
+
 
 ### Acknowledgements
 
